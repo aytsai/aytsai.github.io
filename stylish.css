@@ -1,0 +1,141 @@
+#con {
+  margin-left: 100px;
+}
+
+li.sorting {
+  display: inline-block;
+  list-style: none;
+  width:115px;
+  float:left;
+}
+
+ul#default {
+  margin-left:-30px;
+}
+
+A:link, A:visited, A:active, A:hover {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+A:hover {color: #3BB9EB}
+
+#nav li {
+  display: inline-block;
+  list-style-type: none;
+  position: relative;
+  top:10px;
+  width:100px;
+  margin:-10px 0px 0px 0px;
+  text-align: center;
+  font-family: impact;
+  font-size: 22px;
+  padding: 18px 0px 10px 0px;
+}
+
+h1 {
+  text-align:center;
+  font-size:15px;
+}
+
+body {
+  overflow:hidden; 
+  background-color:#000000;
+  color: #F0F0F0;
+  background-image: url('');
+  background-repeat: repeat;
+}
+
+.adventure {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#navigation {
+  position:relative;
+  left:-40px;
+  width: 600px;
+}
+
+#action {
+  position:relative;
+  left:10px;
+}
+
+#para {
+  font-size:12px;
+}
+
+#current {
+  border-top: 1px dotted #FFFFFF;
+}
+
+input#aLine {
+  border-radius:5px;
+  border: 1px solid #000000;
+  background: #000000;
+  color: #00CC00;
+  font-family: courier;
+  font-size: 15.5px;
+}
+
+p {
+  margin:10px;
+}
+
+div.overlay {
+  text-align:justify;
+  width:500px;
+  min-height:110%;
+  background-color:#000000;
+  margin-left:auto;
+  margin-right:auto; 
+  opacity:0.9;
+  margin-top: -800px;
+  display:none;
+  border-bottom-left-radius:15px;
+  border-bottom-right-radius:15px;
+  font-family: arial;
+  font-size: 12px; 
+}
+
+div.adventure {
+  background-color:#000000;
+  margin: -10px;
+  font-family: courier;
+}
+
+html, body, div.adventure {
+  height: 100%;
+  width: 100%;
+}
+
+input:focus {
+    outline-width: 0;
+}
+
+#stuff {
+color:white;
+}
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}

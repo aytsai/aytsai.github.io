@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Beep Boop</title>
+  <link rel="stylesheet" href="stylish.css" type="text/css"> 
+  <link rel="stylesheet" href="contact.css" type="text/css"> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="typed.js"></script>
+  <script src="txtadvent.js"></script>
+  <script src="portfolio.js"></script>
+</head>
+
+<body>
+<div class="overlay" id="over">
+<div id="container">
+<div id="navigation"
+><ul id="nav"
+><li><a href="#" name="home" onclick="closeW(this)">Home</a></li
+><li><a href="#" name="about" onclick="closeW(this)">About</a></li
+><li><a href="#" name="projects" onclick="closeW(this)">Projects</a></li
+><li><a href="#" name="resume" onclick="closeW(this)">Resume</a></li
+><li><a href="#" name="contact" onclick="closeW(this)">Contact</a></li
+></ul
+></div>
+<div id="current"></div>
+</div>
+</div>
+
+<div id="content" style="display:none">
+<div id="home"></div>
+
+<div id="about"></div>
+
+<div id="projects"></div>
+
+<div id="resume"></div>
+
+<div id="contact"></div>
+
+</div>
+
+
+<div class="adventure"><div id="stuff"></div>
+<div id="action">&gt; <input id="aLine" size="130" maxlength="130"></div></div>
+
+
+<script>
+  // first blurb is appended to the screen
+  advanceAdvent ();
+
+  $("#aLine").keypress(function(e) {
+  code = e.keyCode;
+    if (code == 13) { // enter key is 13; allows user to submit action using enter
+      advanceAdvent();
+      $('#aLine').val('');
+    } // if
+  }); // ideally, the user shouldn't be able to enter while the text is loading
+</script>
+
+</body>
+</html>
