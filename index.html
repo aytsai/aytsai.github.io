@@ -46,16 +46,7 @@
 
 
 <script>
-  // first blurb is appended to the screen
-  advanceAdvent ();
-
-  $("#aLine").keypress(function(e) {
-  code = e.keyCode;
-    if (code == 13) { // enter key is 13; allows user to submit action using enter
-      advanceAdvent();
-      $('#aLine').val('');
-    } // if
-  }); // ideally, the user shouldn't be able to enter while the text is loading
+  advance();
 </script>
 
 </body>
