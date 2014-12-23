@@ -4,6 +4,7 @@
 // check if an action contains string in dictionary
 // consume items
 // prevent typing when screen is typing
+// pair actions with functions to make things easier
 
 /* Map
       ___ 
@@ -204,7 +205,7 @@ function process() {
 		map[room].visits++;
 		caption = map[room].b();
 	}
-	else {
+	else if (act.length) {
 		if (act in map[room].exits) {
 			room = map[room].exits[act];
 			map[room].visits++;
@@ -220,6 +221,11 @@ function process() {
 			caption = map[room].conversation[act];
 			// missing logic
 		}
+		else
+			caption = err;
+	}
+	else {
+		caption = err;
 	}
 	$('#aLine').val('');
 }
