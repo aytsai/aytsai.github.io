@@ -2,6 +2,8 @@
 // link n <-> north, e <-> east, w <-> west, s <-> south
 // make use of typed.js and create occasional typos
 // check if an action contains string in dictionary
+// consume items
+// prevent typing when screen is typing
 
 /* Map
       ___ 
@@ -23,7 +25,7 @@ ___   ___   ___      ___
 */
 
 // possible items: beard, semicolon
-var inventory = {};
+var inventory = [];
 
 var room = 1; // which room
 var numBlurb = 0; // number of blurbs
@@ -63,7 +65,7 @@ map[0] = {
 								 "firefly": convo7,
 								 "fireflies": convo7
 								},
-	actions: {"beard": act0},
+	actions: {"beard": act1},
 	exits: {"east": 1}
 				 
 };
@@ -101,7 +103,7 @@ map[1] = {
 map[2] = {
   visits: 0,
 	b: function () {
-			 return "To the east, you find the ghost of an engineer feverishly working on its laptop."
+			 return "To the east, you find the ghost of an engineer feverishly working on its laptop.";
 		 },
 	conversation: {"talk": convo10,
 								 "north": convo4,
@@ -110,7 +112,7 @@ map[2] = {
 								 "semicolon": convo10,
 								 "colon": convo10
 								},
-	actions: {"talk": act1},
+	actions: {"talk": act0},
 	exits: {"west": 1,
 					"south": 3
 				 }
@@ -119,7 +121,7 @@ map[2] = {
 map[3] = {
   visits: 0,
 	b: function () {
-			 return "In your haste to follow the trail of delicious cookies, you stumble into a shivering bug. A Malevolent Wandering Bug has appeared! ...or not. Contrary to what you heard before, the bug really seems quite harmless. It's carrying a teddybear in one arm and a crudely painted sign in the other."
+			 return "In your haste to follow the trail of delicious cookies, you stumble into a shivering bug. A Malevolent Wandering Bug has appeared! ...or not. Contrary to what you heard before, the bug really seems quite harmless. It's carrying a teddybear in one arm and a crudely painted sign in the other.";
 		 },
 	conversation: {"teddybear": convo1,
 								 "bear": convo1,
@@ -140,7 +142,7 @@ map[3] = {
 map[4] = {
   visits: 0,
 	b: function () {
-			 return "You saunter north to find a huge \"UNDER CONSTRUCTION\" sign blocking your way."
+			 return "You saunter north to find a huge \"UNDER CONSTRUCTION\" sign blocking your way.";
 		 },
 	conversation: {"north": convo4,
 								 "west": convo4,
@@ -180,12 +182,12 @@ function advance() {
 
 function getItem() {
 	// check to see if beard room, if no beard already, or if already used on colon
-	if (room = 2 && (inventory.indexOf("beard") == -1 || inventory.indexOf("semicolon") >= 0)) {
-		inventory.append ("beard");
+	if (room == 2 && (inventory.indexOf("beard") == -1 || inventory.indexOf("semicolon") >= 0)) {
+		inventory.push ("beard");
 		return false;
 	}
-	else if (room = 0 &&  inventory.indexOf("semicolon") == -1) {
-		inventory.append ("semicolon");
+	else if (room == 0 &&  inventory.indexOf("semicolon") == -1) {
+		inventory.push ("semicolon");
 		return false;
 	}
 	else return true; // already had or can't get item!!
@@ -202,20 +204,22 @@ function process() {
 		map[room].visits++;
 		caption = map[room].b();
 	}
-	else if (act in map[room].exits) {
-		room = map[room].exits[act];
-		map[room].visits++;
-		caption = map[room].b();
-	}
-	// getItem() will prevent item from being grabbed more than once
-	else if (act in map[room].actions) {
-		flag = getItem();
-		caption = map[room].actions[act];
-	}
-	
-	if (act in map[room].conversation && !flag) {
-		// just display blurb accordingly
-		// todo: there's some kind of logic i'm overlooking
+	else {
+		if (act in map[room].exits) {
+			room = map[room].exits[act];
+			map[room].visits++;
+			caption = map[room].b();
+			// need to remove items from inventory here
+		}
+		// getItem() will prevent item from being grabbed more than once
+		else if (act in map[room].actions) {
+			flag = getItem();
+			caption = map[room].actions[act];
+		}
+		else if (act in map[room].conversation) {
+			caption = map[room].conversation[act];
+			// missing logic
+		}
 	}
 	$('#aLine').val('');
 }
