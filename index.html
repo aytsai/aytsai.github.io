@@ -4,7 +4,6 @@
 <head>
   <title>Beep Boop</title>
   <link rel="stylesheet" href="stylish.css" type="text/css"> 
-  <link rel="stylesheet" href="contact.css" type="text/css"> 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="typed.js"></script>
   <script src="txtadvent.js"></script>
@@ -46,7 +45,15 @@
 
 
 <script>
-  advance();
+$( document ).ready( function () { advance(); } );
+
+$("#aLine").keypress(function(e) {
+  code = e.keyCode;
+  if (code == 13) { // enter key is 13; allows user to submit action using enter
+    process();
+    advance();
+  } // if
+});
 </script>
 
 </body>

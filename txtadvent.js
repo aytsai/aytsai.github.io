@@ -147,32 +147,7 @@ map[4] = {
 				 ]
 };
 
-var caption = map[1].b;
-
-function getItem() {
-	// check to see if beard room, if no beard already, or if already used on colon
-	if (room = 2 && (inventory.indexOf("beard") == -1 || inventory.indexOf("semicolon") >= 0)) {
-		inventory.append ("beard");
-		return false;
-	}
-	else if (room = 0 &&  inventory.indexOf("semicolon") == -1) {
-		inventory.append ("semicolon");
-		return false;
-	}
-	else return true; // already had or can't get item!!
-}
-
-/* Advance the story. */
-function advance() {
-	createBlurb();
-	$(function(){
-		$("#blurb" + numBlurb).typed({
-			strings: [caption],
-			typeSpeed: 5,
-			showCursor: true
-		});
-	});
-}
+var caption = map[room].b();
 
 /* A blurb is created. */
 function createBlurb () {
@@ -187,6 +162,32 @@ function createBlurb () {
 	if (numBlurb != 0) $( "#blurbc" + (numBlurb-1) + " > span[class='typed-cursor']" ).remove();
 }
 
+/* Advance the story. */
+function advance() {
+	$(function(){
+		createBlurb();
+		$("#blurb" + numBlurb).typed({
+			strings: [caption],
+			typeSpeed: 5,
+			showCursor: true
+		});
+		numBlurb++;
+	});
+}
+
+function getItem() {
+	// check to see if beard room, if no beard already, or if already used on colon
+	if (room = 2 && (inventory.indexOf("beard") == -1 || inventory.indexOf("semicolon") >= 0)) {
+		inventory.append ("beard");
+		return false;
+	}
+	else if (room = 0 &&  inventory.indexOf("semicolon") == -1) {
+		inventory.append ("semicolon");
+		return false;
+	}
+	else return true; // already had or can't get item!!
+}
+
 /* Process input from action line. Exits take priority over actions, which take priority over conversations. */
 function process() {
   var act = "";
@@ -196,12 +197,12 @@ function process() {
 	// if just initialized, DON'T DO ANYTHING
 	if (room == 1 && map[room].visits == 0) {
 		map[room].visits++;
-		caption = map[room].b;
+		caption = map[room].b();
 	}
 	else if (act in map[room].exits) {
 		room = parseInt(map[room].exits.act);
 		map[room].vists++;
-		caption = map[room].b;
+		caption = map[room].b();
 	}
 	// getItem() will prevent item from being grabbed more than once
 	else if (act in map[room].actions) {
@@ -209,17 +210,9 @@ function process() {
 		caption = map[room].actions.act;
 	}
 	
-	if (act in map[room].conversations && !flag) {
+	if (act in map[room].conversation && !flag) {
 		// just display blurb accordingly
 		// todo: there's some kind of logic i'm overlooking
 	}
 	$('#aLine').val('');
 }
-
-$("#aLine").keypress(function(e) {
-  code = e.keyCode;
-  if (code == 13) { // enter key is 13; allows user to submit action using enter
-    process();
-    advance();
-  } // if
-});
