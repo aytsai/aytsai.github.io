@@ -56,17 +56,16 @@ map[0] = {
 			 else
 				 return "A vast emptiness stretche before you. A colon wearing a fake beard beams at you from your hand."
 		 },
-	conversation: [{"talk": convo6},
-								 {"north": convo4},
-								 {"west": convo4},
-								 {"south": convo4},
-								 {"firefly": convo7},
-								 {"fireflies": convo7}
-								],
-	actions: [{"beard": act0}
-					 ],
-	exits: [{"east": "1"}
-				 ]
+	conversation: {"talk": convo6,
+								 "north": convo4,
+								 "west": convo4,
+								 "south": convo4,
+								 "firefly": convo7,
+								 "fireflies": convo7
+								},
+	actions: {"beard": act0},
+	exits: {"east": 1}
+				 
 };
 
 map[1] = {
@@ -82,69 +81,73 @@ map[1] = {
 			 else
 				 return "You\'re in the room where you started. The three trails of cookies leading north, west, and east are still there, getting staler by the second. Somewhere above you, the voice is happily humming. You could intimidate it into letting you navigate the site immediately.";
 		 },
-	conversation: [{"cookies": convo0},
-								 {"cookie": convo0},
-								 {"eat": convo0},
-								 {"talk": convo0},
-								 {"south": convo4},
-								 {"semicolon": convo8},
-								 {"colon": convo8},
-								 {"beard": convo9}
-								],
-	actions: [],
-	exits: [{"west": "0"},
-					{"north": "4"},
-			   	{"east": "2"},
-					{"intimidate": "E"}
-				 ]
+	conversation: {"cookies": convo0,
+								 "cookie": convo0,
+								 "eat": convo0,
+								 "talk": convo0,
+								 "south": convo4,
+								 "semicolon": convo8,
+								 "colon": convo8,
+								 "beard": convo9
+								},
+	actions: {},
+	exits: {"west": 0,
+					"north": 4,
+			   	"east": 2,
+					"intimidate": "E"
+				 }
 };
 
 map[2] = {
   visits: 0,
-	b: "To the east, you find the ghost of an engineer feverishly working on its laptop.",
-	conversation: [{"talk": convo10},
-								 {"north": convo4},
-								 {"east": convo4},
-								 {"beard": convo10},
-								 {"semicolon": convo10},
-								 {"colon": convo10}
-								],
-	actions: [{"talk": act1}
-					 ],
-	exits: [{"west": "1"},
-					{"south": "3"}
-				 ]
+	b: function () {
+			 return "To the east, you find the ghost of an engineer feverishly working on its laptop."
+		 },
+	conversation: {"talk": convo10,
+								 "north": convo4,
+								 "east": convo4,
+								 "beard": convo10,
+								 "semicolon": convo10,
+								 "colon": convo10
+								},
+	actions: {"talk": act1},
+	exits: {"west": 1,
+					"south": 3
+				 }
 };
 
 map[3] = {
   visits: 0,
-	b: "In your haste to follow the trail of delicious cookies, you stumble into a shivering bug. A Malevolent Wandering Bug has appeared! ...or not. Contrary to what you heard before, the bug really seems quite harmless. It's carrying a teddybear in one arm and a crudely painted sign in the other.",
-	conversation: [{"teddybear": convo1},
-								 {"bear": convo1},
-								 {"sign": convo2},
-								 {"talk": convo3},
-								 {"west": convo4},
-								 {"south": convo4},
-								 {"east": convo4},
-								 {"beard": convo5}
-								],
-	actions: [],
-	exits: [{"north": "2"},
-					{"semicolon": "E"},
-					{"colon": "E"}
-				 ]
+	b: function () {
+			 return "In your haste to follow the trail of delicious cookies, you stumble into a shivering bug. A Malevolent Wandering Bug has appeared! ...or not. Contrary to what you heard before, the bug really seems quite harmless. It's carrying a teddybear in one arm and a crudely painted sign in the other."
+		 },
+	conversation: {"teddybear": convo1,
+								 "bear": convo1,
+								 "sign": convo2,
+								 "talk": convo3,
+								 "west": convo4,
+								 "south": convo4,
+								 "east": convo4,
+								 "beard": convo5
+								},
+	actions: {},
+	exits: {"north": 2,
+					"semicolon": "E",
+					"colon": "E"
+				 }
 };
 
 map[4] = {
   visits: 0,
-	b: "You saunter north to find a huge \"UNDER CONSTRUCTION\" sign blocking your way.",
-	conversation: [{"north": convo4},
-								 {"west": convo4},
-								 {"east": convo4}
-								],
-	actions: [],
-	exits: [{"south": "1"}
-				 ]
+	b: function () {
+			 return "You saunter north to find a huge \"UNDER CONSTRUCTION\" sign blocking your way."
+		 },
+	conversation: {"north": convo4,
+								 "west": convo4,
+								 "east": convo4
+								},
+	actions: {},
+	exits: {"south": 1}
 };
 
 var caption = map[room].b();
@@ -168,7 +171,7 @@ function advance() {
 		createBlurb();
 		$("#blurb" + numBlurb).typed({
 			strings: [caption],
-			typeSpeed: 5,
+			typeSpeed: 0,
 			showCursor: true
 		});
 		numBlurb++;
@@ -200,14 +203,14 @@ function process() {
 		caption = map[room].b();
 	}
 	else if (act in map[room].exits) {
-		room = parseInt(map[room].exits.act);
-		map[room].vists++;
+		room = map[room].exits[act];
+		map[room].visits++;
 		caption = map[room].b();
 	}
 	// getItem() will prevent item from being grabbed more than once
 	else if (act in map[room].actions) {
 		flag = getItem();
-		caption = map[room].actions.act;
+		caption = map[room].actions[act];
 	}
 	
 	if (act in map[room].conversation && !flag) {
