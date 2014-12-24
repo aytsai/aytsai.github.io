@@ -2,6 +2,24 @@
   margin-left: 100px;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(100,100,100,1);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(100,100,100,1); 
+}
+
 li.sorting {
   display: inline-block;
   list-style: none;
@@ -44,13 +62,15 @@ body {
   color: #F0F0F0;
   background-image: url('');
   background-repeat: repeat;
+	margin:0;
 }
 
-.adventure {
-	padding-top:10px;
+#adventure {
 	width:100%;
   overflow-x: hidden;
   overflow-y: auto;
+	background-color:#000000;
+  font-family: courier;
 }
 
 #navigation {
@@ -79,7 +99,7 @@ input#aLine {
   border-radius:5px;
   border: 1px solid #000000;
   background: #000000;
-  color: #00CC00;
+  color: #19E819;
   font-family: courier;
   font-size: 15.5px;
 	width: calc(100% - 15px);
@@ -110,13 +130,7 @@ div.overlay {
   font-size: 12px; 
 }
 
-div.adventure {
-  background-color:#000000;
-  margin: -10px;
-  font-family: courier;
-}
-
-html, body, div.adventure {
+html, body, div#adventure {
   height: 100%;
   width: 100%;
 }

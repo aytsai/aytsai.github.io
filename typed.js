@@ -137,9 +137,14 @@
 
             // contain typing function in a timeout humanize'd delay
             self.timeout = setTimeout(function() {
+								/* NOT PART OF ORIGINAL FILE */
+								$("#adventure")[0].scrollTop = $("#adventure")[0].scrollHeight;
+								/* END NOT PART OF ORIGINAL FILE */
+						
                 // check for an escape character before a pause value
                 // format: \^\d+ .. eg: ^1000 .. should be able to print the ^ too using ^^
                 // single ^ are removed from string
+								
                 var charPause = 0;
                 var substr = curString.substr(curStrPos);
                 if (substr.charAt(0) === '^') {
