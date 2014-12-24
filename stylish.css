@@ -79,8 +79,9 @@ body {
   width: 600px;
 }
 
-#para {
-  font-size:12px;
+.para {
+  margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 #current {

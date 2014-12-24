@@ -1,10 +1,8 @@
 // to do:
 // link n <-> north, e <-> east, w <-> west, s <-> south
-// make use of typed.js and create occasional typos
-// fix spacing of the blurbs
-// parse take (item), use (item)	
-// can ask voice about colon even without colon - fix
-// add look function
+// optional - make use of typed.js and create occasional typos
+// parse take *a*/*an*/*the* (item), use *a*/*an*/*the* (item), go (direction)
+// add ending
 
 /* Map
       ___ 
@@ -44,14 +42,21 @@ convo4 = "You walk into a wall. Ouch.";
 convo5 = "The bug bats the beard away.";
 convo6 = "Don't be silly, colons don't have mouths!";
 convo7 = "The fireflies scatter when you attempt to capture one.";
-convo8 = "\"Guess what that colon's called now? <i>A \'semi\'colon.</i> Haha, get it? Because it's only halfway a colon now...\" The voice trails off as it notices you aren't impressed by the pun.";
-convo9 = "\"How rude! Are you insinuating I can't grow a magnificent beard of my own?!\"";
-convo10 = "The ghost\'s eyes gloss over as you approach, but its hands continue to tippity tap away at the keyboard.";
+convo8 = "\"Guess what that a colon with a beard is called? <i>A \'semi\'colon.</i> Haha, get it? Because it's only halfway a colon now...\" The voice trails off as it notices you aren't impressed by the pun.";
+convo9 = "\"I didn't like beards at first. They've been starting to grow on me though.\"";
+convo10 = "The ghost\'s eyes gloss over as you approach.";
 convo11 = "There seems to be a forcefield around the engineer that prevents you from giving the beard back.";
+convo12 = "The ghost mumbles something about fake beards.";
 
-act0 = "As you approach, the ghost stares at you with blood-shot eyes... err, ghostly blood-shot eyes. Then it finally squeaks out, \"It\'s dangerous to go alone! Take this.\"<br/><br/><b>You got a fake beard!</b>";
+act0 = "As you approach, the ghost stares at you with blood-shot eyes... err, ghostly blood-shot eyes. Then it manages to squeak out, \"It\'s dangerous to go alone! Take this.\"<br/><br/><b>You got a fake beard!</b>";
 act1 = "A stroke of inspiration! You stick the beard on the colon. It looks somewhat like a semicolon now. The subject seems absolutely delighted.<br/><br/><b>A fake beard has magically vanished.</b>";
 act2 = "You decide to take the little fellow along for the ride. Maybe it\'ll come in handy.<br/><br/><b>You got a \"semi\"colon!</b>"
+
+look0 = "It is pitch black, but you can smell cookies on the ground.";
+look1 = "There\'s a g-g-g-g-ghost in the room! It's mumbling incoherent things about a fake beard for some reason.";
+look2 = "There doesn't seem to be anything of importance.";
+look3 = "The bug is carrying a teddybear in one arm and a crudely painted sign in the other.";
+look4 = "The sign reads,<br/><center>\"<font face='Comic sans MS'>UNDER CONSTRUCTION</font>\"</center>";
 
 map[0] = {
   visits: 0,
@@ -75,10 +80,10 @@ map[1] = {
 								"<br/><br/>Suddenly, a voice booms out from above. \"<b><i>H-E-L-L-O</i></b>!! It's been a while since someone visited. I'm the ruler of this domain, and rules dictate that I must send unsuspecting travelers on a quest to save my kingdom. Here's your mission of the day - defeat the malevolent wandering bug in the dark! Aaany questions?\"";
 			 else if (this.visits	== 1)			
 				 return "You're about to answer when the voice butts in cheerfully." +
-				 "<br/><br/>\"Right, I forgot to mention... since there's no lights on at the moment, I set some cookies down so that you can find your way around!\"" +
-				 "<br/><br/>True to the voice's word, you sniff out three trails of cookies leading north, west, and east.";
+				 "<br/><br/>\"Right, I forgot to mention... since there are no lights on at the moment, I set some cookies down so that you can find your way around!\"" +
+				 "<br/><br/>True to the voice's word, you sniff out some fragrant cookies lying on the ground.";
 			 else
-				 return "You\'re in the room where you first started. The trails of cookies are still there, getting staler by the second. Somewhere above you, the voice is happily humming.";
+				 return "You\'re in the room where you first started. The cookies are still on the ground, getting staler by the second. Somewhere above you, the voice is happily humming.";
 		 },
 	conversation: {"cookies": convo0,
 								 "cookie": convo0,
@@ -87,7 +92,8 @@ map[1] = {
 								 "south": convo4,
 								 "semicolon": convo8,
 								 "colon": convo8,
-								 "beard": convo9
+								 "beard": convo9,
+								 "look": look0
 								},
 	take: {},
 	use: {},
@@ -106,11 +112,13 @@ map[2] = {
 	conversation: {"talk": convo10,
 								 "north": convo4,
 								 "east": convo4,
-								 "beard": convo10,
+								 "beard": convo11,
 								 "semicolon": convo10,
-								 "colon": convo10
+								 "colon": convo10,
+								 "look": look1,
+								 "talk": convo12
 								},
-	take: {"talk": ["beard", act0]},
+	take: {"beard": ["beard", act0]},
 	use: {},
 	exits: {"west": 1,
 					"south": 3
@@ -120,7 +128,7 @@ map[2] = {
 map[3] = {
   visits: 0,
 	b: function () {
-			 return "You have stumbled into a shivering bug. A Malevolent Wandering Bug has appeared! ...or not. Contrary to what you heard from the voice before, the bug really seems quite harmless. It's carrying a teddybear in one arm and a crudely painted sign in the other.";
+			 return "You have stumbled across an enemy! A Malevolent Wandering Bug has appeared! ...or not. Contrary to what you heard from the voice before, the bug really seems quite harmless.";
 		 },
 	conversation: {"teddybear": convo1,
 								 "bear": convo1,
@@ -129,7 +137,8 @@ map[3] = {
 								 "west": convo4,
 								 "south": convo4,
 								 "east": convo4,
-								 "beard": convo5
+								 "beard": convo5,
+								 "look": look3
 								},
 	take: {},
 	use: {},
@@ -142,11 +151,12 @@ map[3] = {
 map[4] = {
   visits: 0,
 	b: function () {
-			 return "You saunter north to find a huge \"UNDER CONSTRUCTION\" sign blocking your way.";
+			 return "You saunter north to find a huge sign blocking your way.";
 		 },
 	conversation: {"north": convo4,
 								 "west": convo4,
-								 "east": convo4
+								 "east": convo4,
+								 "look": look4
 								},
 	take: {},
 	use: {},
@@ -171,7 +181,8 @@ map[5] = {
 								 "west": convo4,
 								 "south": convo4,
 								 "firefly": convo7,
-								 "fireflies": convo7
+								 "fireflies": convo7,
+								 "look": look2
 								},
 	take: {"colon": ["colon", act2]},
 	use: {"beard": act1},
@@ -185,6 +196,7 @@ function createBlurb () {
   var area = document.getElementById("stuff");
 	var para = document.createElement("p");
   para.id = "blurbc" + numBlurb; // blurb container
+	para.className = "para";
 	area.appendChild(para);
   var span = document.createElement("span");
   span.id = "blurb" + numBlurb;
@@ -231,6 +243,10 @@ function useItem(item) {
 }
 
 function endSequence() {
+}
+
+function parseAction() {
+	// return parsed thing
 }
 
 /* Process input from action line. Exits take priority over actions, which take priority over conversations. */
