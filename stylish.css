@@ -47,6 +47,8 @@ body {
 }
 
 .adventure {
+	padding-top:10px;
+	width:100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -57,11 +59,6 @@ body {
   width: 600px;
 }
 
-#action {
-  position:relative;
-  left:10px;
-}
-
 #para {
   font-size:12px;
 }
@@ -70,13 +67,27 @@ body {
   border-top: 1px dotted #FFFFFF;
 }
 
+#action {
+	display: table;
+  position:relative;
+  left:10px;
+	width:100%;
+}
+
 input#aLine {
+	display: table-cell;
   border-radius:5px;
   border: 1px solid #000000;
   background: #000000;
   color: #00CC00;
   font-family: courier;
   font-size: 15.5px;
+	width: calc(100% - 15px);
+}
+
+#arrow {
+	display: table-cell;
+	width: 15px;
 }
 
 p {
