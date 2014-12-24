@@ -115,22 +115,6 @@ p {
   margin:10px;
 }
 
-div.overlay {
-  text-align:justify;
-  width:500px;
-  min-height:110%;
-  background-color:#000000;
-  margin-left:auto;
-  margin-right:auto; 
-  opacity:0.9;
-  margin-top: -800px;
-  display:none;
-  border-bottom-left-radius:15px;
-  border-bottom-right-radius:15px;
-  font-family: arial;
-  font-size: 12px; 
-}
-
 html, body, div#adventure {
   height: 100%;
   width: 100%;
@@ -141,7 +125,7 @@ input:focus {
 }
 
 #stuff {
-color:white;
+	color:white;
 }
 
 .typed-cursor{

@@ -1,61 +1,31 @@
 <!DOCTYPE HTML>
 <html>
 
-<head>
-  <title>Beep Boop</title>
-  <link rel="stylesheet" href="stylish.css" type="text/css"> 
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="typed.js"></script>
-  <script src="txtadvent.js"></script>
-  <script src="portfolio.js"></script>
-</head>
+	<head>
+		<title>Beep Boop</title>
+		<link rel="stylesheet" href="stylish.css" type="text/css"> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="typed.js"></script>
+		<script src="txtadvent.js"></script>
+	</head>
 
-<body>
-<div class="overlay" id="over">
-<div id="container">
-<div id="navigation"
-><ul id="nav"
-><li><a href="#" name="home" onclick="closeW(this)">Home</a></li
-><li><a href="#" name="about" onclick="closeW(this)">About</a></li
-><li><a href="#" name="projects" onclick="closeW(this)">Projects</a></li
-><li><a href="#" name="resume" onclick="closeW(this)">Resume</a></li
-><li><a href="#" name="contact" onclick="closeW(this)">Contact</a></li
-></ul
-></div>
-<div id="current"></div>
-</div>
-</div>
-
-<div id="content" style="display:none">
-<div id="home"></div>
-
-<div id="about"></div>
-
-<div id="projects"></div>
-
-<div id="resume"></div>
-
-<div id="contact"></div>
-
-</div>
+	<body>
+	<div id="adventure"><div id="stuff"></div>
+	<div id="action"><div id="arrow">&gt;</div><input id="aLine"></div></div>
 
 
-<div id="adventure"><div id="stuff"></div>
-<div id="action"><div id="arrow">&gt;</div><input id="aLine"></div></div>
+	<script>
+	$( document ).ready( function () { advance(); } );
 
+	$("#aLine").keypress(function(e) {
+		code = e.keyCode;
+		if (code == 13) { // enter key is 13; allows user to submit action using enter
+			process();
+			advance();
+		} // if
+		// if key code = 27 == esc
+	});
+	</script>
 
-<script>
-$( document ).ready( function () { advance(); } );
-
-$("#aLine").keypress(function(e) {
-  code = e.keyCode;
-  if (code == 13) { // enter key is 13; allows user to submit action using enter
-    process();
-    advance();
-  } // if
-	// if key code = 27 == esc
-});
-</script>
-
-</body>
+	</body>
 </html>

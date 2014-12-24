@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Beep Boop</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<canvas width="500" height="400" id="canvas_1" tabindex="0">
+			Canvas tag not supported. Try switching to Chrome?
+		</canvas>
+
+		<script>
+			var canvas = document.getElementById("canvas_1");
+			canvas.addEventListener('keydown', doKeyDown, true);
+
+			canvas_context = canvas.getContext("2d");
+			canvas_context.fillRect(100, 100, 30, 30);
+
+			var x = 100;
+			var y = 100;
+
+			function doKeyDown(e){
+			
+				if (e.keyCode == 38) {
+					clearCanvas();
+					y = y - 10;
+					canvas_context.fillRect(x, y, 30, 30);
+				}
+				
+				if (e.keyCode == 40) {
+					clearCanvas();
+					y = y + 10;
+					canvas_context.fillRect(x, y, 30, 30);
+				}
+				
+				if (e.keyCode == 37) {
+					clearCanvas();
+					x = x - 10;
+					canvas_context.fillRect(x, y, 30, 30);
+				}
+
+				if (e.keyCode == 39) {
+					clearCanvas();
+					x = x + 10;
+					canvas_context.fillRect(x, y, 30, 30);
+				}
+
+			}
+
+			function clearCanvas() {
+				canvas.width = canvas.width;
+			}
+		</script>
+	</body>
+</html>
+
