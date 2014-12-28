@@ -17,7 +17,7 @@
     background: rgba(100,100,100,1);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(100,100,100,1); 
+	background: rgba(100,100,100,0); 
 }
 
 li.sorting {
