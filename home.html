@@ -2,15 +2,30 @@
 <html>
 	<head>
 		<title>Beep Boop</title>
-		<link rel="stylesheet" href="stylish.css" type="text/css"> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script src="geemu.js"></script>
+		<style>
+			body {
+				background: #000000;
+			}
+			
+			#can {
+				display:block;
+				position: absolute;
+				top:0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+		</style>
 	</head>
 
 	<body>
 		<center><canvas id="can">
 			Canvas tag not supported. Try switching to Chrome?
 		</canvas></center>
+		
+		<script src="geemu.js"></script>
 	</body>
 </html>
 

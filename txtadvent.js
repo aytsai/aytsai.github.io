@@ -1,10 +1,5 @@
 // to do:
 // optional - make use of typed.js and create occasional typos
-// NEW PLAN
-// question: Do you have some time to spare?
-// no - "Understood, I'll take you to the site now." redirect to normal site
-// yes - go to first room
-// actually, is this necessary? most info can already be gotten from resume, so if going to website, probably somewhat interested?
 
 /* Map
       ___ 
